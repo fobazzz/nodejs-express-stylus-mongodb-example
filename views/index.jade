@@ -1,0 +1,28 @@
+h1= 'Добавление нового пользователя'
+form( action='save', method='post' )
+  .item
+    label email:
+    input( name='user[email]', type='text' )
+  .item
+    label пароль:
+    input( name='user[password]', type='text' )
+  .item
+    label( for='sex_male' )
+      input( name='user[sex]', id='sex_male', value='male', type='radio', checked='checked' ) 
+      = ' мужчина'
+    label( for='sex_female' )
+      input( name='user[sex]', id='sex_female', value='female', type='radio' ) 
+      = ' женщина'
+  .item
+    button( type='submit') Добавить
+
+h1= 'Список пользователей'
+table
+  each user in users
+    tr
+      td= user.email
+      td= user.password
+      td= user.sex
+      td
+        a( href='/users/#{user._id}/delete', class='delete' ) x
+
