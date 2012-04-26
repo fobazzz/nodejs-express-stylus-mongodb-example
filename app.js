@@ -2,37 +2,37 @@
 // ПОДКЛЮЧАЕМ ЗАВИСИМЫЕ МОДУЛИ
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
 
-var app = module.exports = express.createServer();
+var app = module.exports = express.createServer()
 
 // НАСТРОЙКА ПРИЛОЖЕНИЯ
 
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser());
+  app.set('views', __dirname + '/views')
+  app.set('view engine', 'jade')
+  app.use(express.bodyParser())
 
-  app.use(express.methodOverride());
+  app.use(express.methodOverride())
   app.use(require('stylus').middleware({
-            force: false                // если стоит false (по умолчанию) - то будет компилить только если были изменения в .styl файле
+            force: false                
           , src: __dirname + '/stylus'
           , dest: __dirname + '/public'
           , compress: true
           , linenos: true
-          , debug: false                // показывает в консоли дебаг
-        }));
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));  
-});
+          , debug: false                
+        }))
+  app.use(app.router)
+  app.use(express.static(__dirname + '/public'))
+})
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }))
+})
 
 app.configure('production', function(){
-  app.use(express.errorHandler());
-});
+  app.use(express.errorHandler())
+})
 
 // MONGO
 
@@ -41,7 +41,7 @@ var mongo = require('mongodb'),
   Db = mongo.Db,
 	BSON = mongo.BSONPure
 	
-var server = new Server('localhost', 27017, {auto_reconnect: true, poolSize: 1 }) // poolSize - колличество одновременных tcp коннектов
+var server = new Server('localhost', 27017, {auto_reconnect: true, poolSize: 1 }) 
 var db = new Db('exampleDb', server)
 
 db.open(function(err, db){
@@ -52,36 +52,23 @@ db.open(function(err, db){
 
 // главная страница
 app.get('/', function(req, res){
-	
 	db.collection('users', function(err, collection) {
 		if(err) console.log(err)
-		else {
-			collection.find().toArray(function(err, users) {
+		else collection.find().toArray(function(err, users) {
 				if(err) console.log(err)
-				else {
-					//console.log(users)
-					res.render('index', { users: users })
-				}
-			});
-
-		}
+				else res.render('index', { users: users })
+		})
 	})
-
 })
 
 // сохранение нового пользователя
 app.post('/save', function(req, res){
-
 	db.collection('users', function(err, collection) {
 		if(err) console.log(err)
-		else {
-			var user = req.body.user // не безопасно естественно :) но для тестов нас сойдет
-			collection.insert(user, {safe:true}, function(err, result) {
-				console.log('User inserted', result)
-			})
-		}
+		else collection.insert(req.body.user, {safe:true}, function(err, result) {
+			console.log('User inserted', result)
+		})
 	})
-
 	res.redirect('/')
 })
 
@@ -90,14 +77,10 @@ app.get('/users/:id/delete', function(req, res){
 
 	db.collection('users', function(err, collection) {
 		if(err) console.log(err)
-		else {
-
-			collection.remove({ '_id': new BSON.ObjectID(req.params.id) }, {safe:true}, function(err, result) {
-				console.log('User deleted', result, req.params.id)
-			})
-		}
+		else collection.remove({ '_id': new BSON.ObjectID(req.params.id) }, {safe:true}, function(err, result) {
+			console.log('User deleted', result, req.params.id)
+		})
 	})
-
 	res.redirect('/')
 })
 

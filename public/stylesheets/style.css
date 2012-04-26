@@ -1,24 +1,24 @@
 
-/* line 1 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 1 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 body{font-family:verdana;margin:50px 20%}
 
-/* line 4 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 4 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 form{margin-bottom:20px;}
 
-/* line 6 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 6 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 form .item{margin-bottom:10px;}
 
-/* line 8 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 8 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 form .item label{display:block;margin-bottom:5px;color:#666;font-size:11px}
 
-/* line 13 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 13 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 form .item input[type="text"]{display:block;margin:0;padding:5px;width:300px}
 
-/* line 19 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 19 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 table{border-collapse:collapse}
 
-/* line 21 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 21 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 tr,td{border:1px solid #eee;padding:5px;}
 
-/* line 25 : /Users/kulakowka/Documents/node.js/app/stylus/stylesheets/style.styl */
+/* line 25 : /Users/kulakowka/Documents/node.js/nodejs-express-stylus-mongodb-example/stylus/stylesheets/style.styl */
 tr a.delete,td a.delete{color:#f00}
